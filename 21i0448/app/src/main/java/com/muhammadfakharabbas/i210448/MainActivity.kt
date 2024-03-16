@@ -46,6 +46,6 @@ class MainActivity : AppCompatActivity() {
         }
     }
     suspend fun waiter(){
-        delay(5000) // Delay for 5 seconds
+        delay(5000) // 5 secs delay
     }
 }
