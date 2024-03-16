@@ -73,11 +73,12 @@
             android:paddingTop="20dp"/>
 
         <EditText
-            android:id="@+id/email_edtxt"
+            android:id="@+id/email"
             android:layout_width="356dp"
             android:layout_height="35dp"
             android:background="@drawable/rounded_textboxes"
-            android:text="Enter Email"
+            android:hint="Enter Email"
+            android:inputType="textEmailAddress"
             android:textSize="15dp"
             android:textColor="#80000000"
             android:padding="10dp"
@@ -96,11 +97,12 @@
             android:paddingTop="20dp"/>
 
         <EditText
-            android:id="@+id/pass_edtxt"
+            android:id="@+id/pass"
             android:layout_width="356dp"
             android:layout_height="35dp"
             android:background="@drawable/rounded_textboxes"
-            android:text="Enter Password"
+            android:hint="Enter Password"
+            android:inputType="textPassword"
             android:textSize="15dp"
             android:textColor="#80000000"
             android:padding="10dp"

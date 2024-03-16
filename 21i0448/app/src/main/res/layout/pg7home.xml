@@ -51,15 +51,26 @@
             android:textSize="30dp"
             android:textStyle="bold"
             android:paddingStart="10dp"></TextView>
+
         <Button
             android:id="@+id/notification_btn"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:background="@drawable/circle_notification_24dp"
             android:backgroundTint="#157177"
-            android:layout_marginStart="150dp"
+            android:layout_marginStart="110dp"
             android:layout_marginTop="5dp"
             ></Button>
+         <Button
+             android:id="@+id/logout"
+             android:layout_width="wrap_content"
+             android:layout_height="40dp"
+             android:layout_marginStart="10dp"
+             android:layout_marginTop="5dp"
+             android:backgroundTint="#157177"
+             android:text="Log out"
+             android:textColor="#FFFFFF"
+             ></Button>
 
 
      </LinearLayout>

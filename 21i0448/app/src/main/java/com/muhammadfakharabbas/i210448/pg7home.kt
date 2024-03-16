@@ -6,6 +6,8 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.ImageButton
 import android.widget.ImageView
+import android.widget.Toast
+import com.google.firebase.auth.FirebaseAuth
 
 class pg7home : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -13,7 +15,7 @@ class pg7home : AppCompatActivity() {
         setContentView(R.layout.pg7home)
         var bell_btn = findViewById<Button>(R.id.notification_btn)
         var john_btn = findViewById<ImageButton>(R.id.john_btn)
-
+        val logout=findViewById<Button>(R.id.logout)
         var home_btn = findViewById<ImageView>(R.id.home_img)
         var search_btn = findViewById<ImageView>(R.id.search_img)
         var add_btn = findViewById<ImageView>(R.id.add_img)
@@ -21,6 +23,13 @@ class pg7home : AppCompatActivity() {
         var profile_btn = findViewById<ImageView>(R.id.profile_img)
 
 
+        logout.setOnClickListener {
+            var mAuth= FirebaseAuth.getInstance()
+            mAuth.signOut()
+            var i=Intent(this,Login::class.java)
+            startActivity(i)
+            Toast.makeText(this,"Logged Out", Toast.LENGTH_LONG).show()
+        }
         home_btn.setOnClickListener{
             val intent = Intent(this, pg7home::class.java)
             startActivity(intent)

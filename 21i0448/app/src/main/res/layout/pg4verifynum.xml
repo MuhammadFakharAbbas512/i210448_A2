@@ -50,6 +50,7 @@
                 android:paddingStart="50dp"
                 />
             <TextView
+                android:id="@+id/num"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -57,49 +58,94 @@
                 android:textColor="#157177"
                 android:textSize="17dp"></TextView>
         </LinearLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <EditText
+                android:id="@+id/optET1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="45dp"></EditText>
+            <EditText
+                android:id="@+id/optET2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="105dp"></EditText>
+            <EditText
+                android:id="@+id/optET3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="165dp"></EditText>
+            <EditText
+                android:id="@+id/optET4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="225dp"></EditText>
+            <EditText
+                android:id="@+id/optET5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="285dp"></EditText>
+            <EditText
+                android:id="@+id/optET6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="345dp"></EditText>
+
         <LinearLayout
                 android:layout_weight="1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_margin="15dp"
-                android:paddingStart="45dp"
+                android:layout_margin="5dp"
+                android:paddingStart="20dp"
                 >
             <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/circle_o"
-                android:layout_margin="5dp"
-                ></ImageView>
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/circle_o"
-                android:layout_margin="5dp"
-                ></ImageView>
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/circle_o"
-                android:layout_margin="5dp"
-                ></ImageView>
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/circle_o"
-                android:layout_margin="5dp"
-                ></ImageView>
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/circle_o"
-                android:layout_margin="5dp"
-                ></ImageView>
 
-
-
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/circle_o"
+                android:layout_margin="5dp"
+                ></ImageView>
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/circle_o"
+                android:layout_margin="5dp"
+                ></ImageView>
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/circle_o"
+                android:layout_margin="5dp"
+                ></ImageView>
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/circle_o"
+                android:layout_margin="5dp"
+                ></ImageView>
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/circle_o"
+                android:layout_margin="5dp"
+                ></ImageView>
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/circle_o"
+                android:layout_margin="5dp"
+                ></ImageView>
         </LinearLayout>
 
+        </RelativeLayout>
   <Button
       android:id="@+id/verify_btn"
     android:layout_weight="1"
@@ -130,6 +176,7 @@
             android:gravity="center"  >
          </TextView>
             <TextView
+                android:id="@+id/time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"

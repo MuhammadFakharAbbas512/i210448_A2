@@ -80,7 +80,7 @@
             android:paddingTop="5dp"/>
 
         <EditText
-            android:id="@+id/name_edtxt"
+            android:id="@+id/name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/rounded_textboxes"
@@ -102,11 +102,12 @@
             android:paddingTop="5dp"/>
 
         <EditText
-            android:id="@+id/email_edtxt"
+            android:id="@+id/email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/rounded_textboxes"
             android:hint="Enter Email"
+            android:inputType="textEmailAddress"
             android:textColorHint="#80000000"
             android:padding="7dp"
             android:layout_marginStart="20dp"
@@ -124,11 +125,12 @@
             android:paddingTop="5dp"/>
 
         <EditText
-            android:id="@+id/contact_edtxt"
+            android:id="@+id/num"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/rounded_textboxes"
             android:hint="Enter Contact Number"
+            android:inputType="phone"
             android:textColorHint="#80000000"
             android:padding="7dp"
             android:layout_marginStart="20dp"
@@ -146,7 +148,7 @@
             android:paddingTop="5dp"/>
 
         <EditText
-            android:id="@+id/country_edtxt"
+            android:id="@+id/country"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/rounded_textboxes"
@@ -169,7 +171,7 @@
             android:paddingTop="5dp"/>
 
         <EditText
-            android:id="@+id/city_edtxt"
+            android:id="@+id/city"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/rounded_textboxes"
@@ -192,12 +194,12 @@
             android:paddingTop="5dp"/>
 
         <EditText
-            android:id="@+id/pass_edtxt"
+            android:id="@+id/pass"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/rounded_textboxes"
             android:hint="Enter Password"
-
+            android:inputType="textPassword"
             android:textColorHint="#80000000"
             android:padding="10dp"
             android:layout_marginStart="20dp"
@@ -209,7 +211,7 @@
             android:id="@+id/passlength_txt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Password must be at least 8 characters long"
+            android:text="Password must be at least 6 characters long"
             android:textColor="@color/white"
             android:textSize="12dp"
             android:layout_marginStart="20dp"
