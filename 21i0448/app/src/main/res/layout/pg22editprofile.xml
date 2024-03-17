@@ -63,11 +63,12 @@
             android:layout_marginTop="30dp"/>
 
         <EditText
-            android:id="@+id/name_edtxt"
+            android:id="@+id/name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/rounded_textboxes"
             android:hint="Ali"
+            android:text=""
             android:textColorHint="#80000000"
             android:padding="7dp"
             android:layout_marginStart="20dp"
@@ -86,7 +87,8 @@
             android:paddingTop="5dp"/>
 
         <EditText
-            android:id="@+id/email_edtxt"
+            android:id="@+id/email"
+            android:text=""
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/rounded_textboxes"
@@ -109,7 +111,8 @@
             android:paddingTop="5dp"/>
 
         <EditText
-            android:id="@+id/contact_edtxt"
+            android:text=""
+            android:id="@+id/contact"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/rounded_textboxes"
@@ -132,7 +135,8 @@
             android:paddingTop="5dp"/>
 
         <EditText
-            android:id="@+id/country_edtxt"
+            android:id="@+id/country"
+            android:text=""
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/rounded_textboxes"
@@ -155,7 +159,8 @@
             android:paddingTop="5dp"/>
 
         <EditText
-            android:id="@+id/city_edtxt"
+            android:id="@+id/city"
+            android:text=""
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/rounded_textboxes"
@@ -183,6 +188,7 @@
             />
     </LinearLayout>
     <ImageView
+        android:id="@+id/img"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:src="@mipmap/edit_profile"
