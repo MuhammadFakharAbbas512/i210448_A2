@@ -42,6 +42,7 @@
                     android:textSize="30dp"
                     android:layout_marginBottom="10dp">></TextView>
                 <TextView
+                    android:id="@+id/mentorname"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:text="John Cooper"
@@ -52,10 +53,12 @@
 
             <RelativeLayout
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_gravity="right">
                 <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:id="@+id/mentorimg"
+                    android:layout_width="92dp"
+                    android:layout_height="92dp"
                     android:layout_gravity="right"
                     android:layout_marginStart="100dp"
                     android:background="@drawable/outline_image_circle"
@@ -63,8 +66,8 @@
                     android:clipToOutline="true"
                     ></ImageView>
                 <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="92dp"
+                    android:layout_height="92dp"
                     android:layout_gravity="right"
                     android:layout_marginStart="100dp"
                     android:background="@drawable/outline_image_circle" ></ImageView>
@@ -83,12 +86,18 @@
             android:layout_marginStart="15dp"
             android:layout_marginBottom="10dp"
             >
-            <TextView
+            <LinearLayout
+                android:layout_width="150dp"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/mentordesc"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:text="UX Designer at"
+                    android:text="UX Designer at Google"
                     android:textColor="@color/white"
                     android:textSize="20dp"></TextView>
+            </LinearLayout>
+
 
             <ImageView
                 android:layout_width="wrap_content"
@@ -98,6 +107,7 @@
                 android:src="@drawable/baseline_star_rate_24"
                 ></ImageView>
             <TextView
+                android:id="@+id/mentorrate"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:text="4.8"
@@ -105,14 +115,7 @@
                 android:textColor="@color/white"
                 android:textSize="20dp"></TextView>
         </LinearLayout>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:text="Google"
-            android:textColor="@color/white"
-            android:textSize="20dp"
-            android:layout_marginStart="14dp"
-            android:layout_marginBottom="14dp"></TextView>
+
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="3dp"
@@ -127,6 +130,7 @@
             android:textSize="15dp"
             android:layout_margin="10dp"></TextView>
         <TextView
+            android:id="@+id/mentorAbout"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:text="I am a passionate UX designer at Google with a focus on creating user-centric and intuitive interfaces. With 10 years of experience, I have had the opportunity to work on diverse projects that have shaped my undestanding of design principles and user experience. "
