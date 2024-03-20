@@ -6,7 +6,8 @@
     android:background="#DEF8F8"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".pg15chat_person">
-    <RelativeLayout
+    <LinearLayout
+        android:id="@+id/l1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
@@ -18,20 +19,23 @@
             android:layout_height="25dp"
             android:background="@drawable/baseline_arrow_back_24"
             android:backgroundTint="#FFFFFF"
-            android:layout_marginTop="55dp"
+            android:layout_marginTop="25dp"
             android:layout_marginStart="20dp"
             android:layout_marginBottom="10dp">
         </Button>
         <TextView
+            android:id="@+id/tvUserName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="left|top"
+            android:layout_margin="25dp"
             android:text="John Cooper"
             android:textColor="#FFFFFF"
             android:textSize="25dp"
             android:textStyle="bold"
-            android:layout_marginTop="50dp"
-            android:layout_marginStart="50dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginBottom="10dp"
             />
         <ImageView
             android:id="@+id/call_btn"
@@ -39,8 +43,8 @@
             android:layout_height="wrap_content"
             android:background="@drawable/baseline_call_24"
             android:backgroundTint="#FFFFFF"
-            android:layout_marginTop="50dp"
-            android:layout_marginStart="310dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginStart="125dp"
             ></ImageView>
         <ImageView
             android:id="@+id/videocall_btn"
@@ -48,150 +52,23 @@
             android:layout_height="wrap_content"
             android:background="@drawable/videocam_white_24dp"
             android:backgroundTint="#FFFFFF"
-            android:layout_marginTop="50dp"
-            android:layout_marginStart="350dp"
-            ></ImageView>
-    </RelativeLayout>
-
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="right"
-        android:layout_marginTop="175dp"
-        android:layout_marginEnd="10dp">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/rounded_textboxes"
-            android:backgroundTint="#A2E7DF"
-            android:padding="10dp"
-            android:text="Hello, You there?"
-            android:textColor="#000000"></TextView>
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="right"
-        android:layout_marginEnd="20dp">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="10:30"
-            android:gravity="right"></TextView>
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="left"
-        android:layout_marginTop="5dp"
-        android:layout_marginStart="10dp">
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="right"
+            android:layout_marginTop="30dp"
             android:layout_marginStart="20dp"
-            android:layout_marginTop="5dp"
-            android:background="@drawable/outline_image_circle"
-            android:src="@mipmap/john_copper"
-            android:clipToOutline="true"
             ></ImageView>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginTop="15dp"
-            android:layout_marginStart="15dp" >
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/rounded_textboxes"
-                android:backgroundTint="#FFFFFF"
-                android:padding="10dp"
-                android:text="Yes"
-                android:textColor="#000000"></TextView>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="10:32"
-                android:gravity="right"></TextView>
-        </LinearLayout>
     </LinearLayout>
 
-    <LinearLayout
+<!---Recycler View here for chat-->
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_below="@id/l1"
         android:layout_width="match_parent"
+        android:layout_above="@id/r1"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="right"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="10dp">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/rounded_textboxes"
-            android:backgroundTint="#A2E7DF"
-            android:padding="10dp"
-            android:text="I need your guidance"
-            android:textColor="#000000"></TextView>
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="right"
-        android:layout_marginEnd="20dp">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="10:30"
-            android:gravity="right"></TextView>
-    </LinearLayout>
+        android:id="@+id/chatRecyclerView"/>
+
+
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="left"
-        android:layout_marginTop="5dp"
-        android:layout_marginStart="10dp">
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="right"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="5dp"
-            android:background="@drawable/outline_image_circle"
-            android:src="@mipmap/john_copper"
-            android:clipToOutline="true"
-            ></ImageView>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginTop="15dp"
-            android:layout_marginStart="15dp" >
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/rounded_textboxes"
-                android:backgroundTint="#FFFFFF"
-                android:padding="10dp"
-                android:text="How can I help you?"
-                android:textColor="#000000"></TextView>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="10:32"
-                android:gravity="right"></TextView>
-        </LinearLayout>
-
-    </LinearLayout>
-
-    <LinearLayout
+        android:id="@+id/r1"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
@@ -208,13 +85,14 @@
             android:orientation="horizontal"
             android:padding="5dp">
             <ImageView
-
+                android:id="@+id/file"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:layout_marginStart="5dp"
                 android:src="@drawable/baseline_attach_file_24"></ImageView>
             <ImageView
+                android:id="@+id/img"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
@@ -223,6 +101,7 @@
                 android:src="@drawable/image_white_24dp"></ImageView>
 
             <EditText
+                android:id="@+id/msg"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:hint="Type something ..."
@@ -237,12 +116,14 @@
                 android:layout_marginStart="100dp"
                 android:src="@drawable/outline_photo_camera_24"></ImageView>
             <ImageView
+                android:id="@+id/audio"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:layout_marginStart="5dp"
                 android:src="@drawable/audio_voice_24"></ImageView>
             <ImageView
+                android:id="@+id/send"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
