@@ -7,7 +7,6 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import com.example.myfirebaseex.ScreenshotDetectionDelegate
 
 open class ScreenshotDetectionActivity : AppCompatActivity(), ScreenshotDetectionDelegate.ScreenshotDetectionListener {
     companion object {
@@ -52,11 +51,14 @@ open class ScreenshotDetectionActivity : AppCompatActivity(), ScreenshotDetectio
 
 
     override fun onScreenCaptured(path: String) {
-        // Do something when screen was captured
+        Toast.makeText(this, "Screenshot captured message", Toast.LENGTH_SHORT).show()
+
     }
 
     override fun onScreenCapturedwithDeniedPermission() {
         //
+        Toast.makeText(this, "permission_denied_message", Toast.LENGTH_SHORT).show()
+
     }
 
     private fun checkReadExternalStoragePermission() {
