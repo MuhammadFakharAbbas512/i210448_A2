@@ -13,13 +13,11 @@ import org.junit.Test
 class LoginTest{
 
     private lateinit var scene: ActivityScenario<Login>
-
     @Before
     fun setup(){
         scene = ActivityScenario.launch(Login::class.java)
         scene.moveToState(Lifecycle.State.RESUMED)
     }
-
     @Test
     fun testLoginButton(){
         Thread.sleep(1000)

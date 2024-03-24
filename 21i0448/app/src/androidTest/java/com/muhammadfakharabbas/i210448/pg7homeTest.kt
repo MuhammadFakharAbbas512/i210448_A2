@@ -8,18 +8,19 @@ import androidx.test.espresso.matcher.ViewMatchers
 import org.junit.Before
 import org.junit.Test
 
+class pg7homeTest {
 
-class SignupTest{
+    private lateinit var scene: ActivityScenario<pg7home>
 
-    private lateinit var scene: ActivityScenario<Signup>
     @Before
     fun setup(){
-        scene = ActivityScenario.launch(Signup::class.java)
+        scene = ActivityScenario.launch(pg7home::class.java)
         scene.moveToState(Lifecycle.State.RESUMED)
     }
+
     @Test
     fun testSignupButton(){
         Thread.sleep(1000)
-        Espresso.onView(ViewMatchers.withId(R.id.signup_btn)).perform(ViewActions.click())
+        Espresso.onView(ViewMatchers.withId(R.id.add_img)).perform(ViewActions.click())
     }
 }
