@@ -27,6 +27,8 @@ class pg10mentor : AppCompatActivity() {
         var name =  findViewById<TextView>(R.id.mentorname)
         var img =  findViewById<ImageView>(R.id.mentorimg)
         var desc =  findViewById<TextView>(R.id.mentordesc)
+        var rate = findViewById<TextView>(R.id.mentorrate)
+
 
         val intent = intent
         val mid = intent.getStringExtra("mid")
@@ -38,12 +40,14 @@ class pg10mentor : AppCompatActivity() {
                 val mentorName = dataSnapshot.child("name").getValue(String::class.java)
                 val mentorDesc = dataSnapshot.child("description").getValue(String::class.java)
                 val mentorImg = dataSnapshot.child("dpUrl").getValue(String::class.java)
+                val mentorRate = dataSnapshot.child("reviews").child("rating").getValue(String::class.java)
 
                 val msg = "mentorDesc: ${mentorDesc}, mName: ${mentorName}, "
                 //Toast.makeText(this@pg10mentor, msg, Toast.LENGTH_LONG).show()
                 if (mentorName != null && mentorDesc != null) {
                    name.text = mentorName
                     desc.text = mentorDesc
+                  //  rate.text = mentorRate
                 }
                 mentorImg?.let {
                     Glide.with(this@pg10mentor)
@@ -61,6 +65,7 @@ class pg10mentor : AppCompatActivity() {
 
         back_btn.setOnClickListener{
             val intent = Intent(this, pg7home::class.java)
+            intent.putExtra("mid",mid)
             startActivity(intent)
         }
         review_btn.setOnClickListener{
@@ -70,10 +75,12 @@ class pg10mentor : AppCompatActivity() {
         }
         join_btn.setOnClickListener{
             val intent = Intent(this, pg16chat_community::class.java) //pg16
+            intent.putExtra("mid",mid)
             startActivity(intent)
         }
         booksession_btn.setOnClickListener{
             val intent = Intent(this, pg13calendar::class.java)
+            intent.putExtra("mid",mid)
             startActivity(intent)
         }
     }
