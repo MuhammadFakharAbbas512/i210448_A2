@@ -16,6 +16,7 @@
         android:orientation="vertical"
         >
         <TextView
+            android:id="@+id/mentorname"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -36,15 +37,16 @@
             android:layout_marginTop="15dp"
             ></TextView>
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:id="@+id/mentorimg"
+            android:layout_width="52dp"
+            android:layout_height="52dp"
             android:layout_gravity="center"
             android:layout_marginStart="20dp"
             android:layout_marginEnd="20dp"
             android:layout_marginTop="20dp"
             android:background="@drawable/circle_o"
             android:backgroundTint="#CCCCCC"
-            android:src="@mipmap/john_copper"
+            android:src="@drawable/profile_image"
             android:clipToOutline="true"
             ></ImageView>
         <LinearLayout

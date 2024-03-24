@@ -63,7 +63,7 @@ class Signup : AppCompatActivity() {
                     .setCallbacks(callbacks)
                     .build()
                 PhoneAuthProvider.verifyPhoneNumber(options)
-                Toast.makeText(baseContext, "Please provide OTP code", Toast.LENGTH_LONG).show()
+                Toast.makeText(this, "Please provide OTP code", Toast.LENGTH_LONG).show()
             }
 
             if (!email.text.isNullOrBlank() && !(pass.text.isNullOrBlank())) {
@@ -81,6 +81,7 @@ class Signup : AppCompatActivity() {
                             val userRef = FirebaseDatabase.getInstance().getReference("users")
                                 .child(userId.toString())
                             val userData = HashMap<String, String>()
+                            userData["userId"] = userId.toString()
                             userData["name"] = name.text.toString()
                             userData["email"] = userEmail
                             userData["phone"] = num.text.toString()
@@ -100,6 +101,8 @@ class Signup : AppCompatActivity() {
                     }
             }
             if (email.text.isNullOrBlank() && (pass.text.isNullOrBlank()) && (num.text.isNullOrBlank())) {
+                Toast.makeText(this, "Field cannot be emptyEnter Email/Phone to sign up.", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
             }
         }
         fun esignup(){

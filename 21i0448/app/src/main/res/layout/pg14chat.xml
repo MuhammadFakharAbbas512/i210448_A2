@@ -81,6 +81,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
             <ImageView
+                android:id="@+id/user2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="right"
@@ -91,7 +92,7 @@
                 android:clipToOutline="true"
                 ></ImageView>
             <ImageView
-                android:id="@+id/used"
+
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="right"
@@ -119,6 +120,7 @@
                 android:clipToOutline="true"
                 ></ImageView>
             <ImageView
+                android:id="@+id/user3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="right"
@@ -146,6 +148,7 @@
                 android:clipToOutline="true"
                 ></ImageView>
             <ImageView
+                android:id="@+id/user4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="right"
@@ -183,8 +186,8 @@
 
         <ImageView
             android:id="@+id/john_chat_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="52dp"
+            android:layout_height="52dp"
             android:layout_gravity="right"
             android:layout_marginStart="7dp"
             android:layout_marginTop="5dp"

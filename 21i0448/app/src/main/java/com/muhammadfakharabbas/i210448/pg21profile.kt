@@ -23,6 +23,7 @@ class pg21profile : AppCompatActivity() {
 
         val userName = findViewById<TextView>(R.id.userName)
         val userImg = findViewById<ImageView>(R.id.img)
+        val usercity = findViewById<TextView>(R.id.city)
         val auth = FirebaseAuth.getInstance()
         val backBtn = findViewById<Button>(R.id.back_btn)
         var home_btn = findViewById<ImageView>(R.id.home_img)
@@ -44,9 +45,11 @@ class pg21profile : AppCompatActivity() {
         userRef.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 val name = snapshot.child("name").getValue(String::class.java)
+                val city = snapshot.child("city").getValue(String::class.java)
                 val profileImage = snapshot.child("profileImage").getValue(String::class.java)
 
                 userName.text = name
+                usercity.text = city
 
                 // Load user image using Picasso library
                 if (!profileImage.isNullOrEmpty()) {

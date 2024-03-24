@@ -2,18 +2,14 @@ package com.muhammadfakharabbas.i210448
 
 import android.annotation.SuppressLint
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
-import android.widget.ImageButton
 import android.widget.ImageView
-import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.DataSnapshot
@@ -22,7 +18,7 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 
-class pg7home : AppCompatActivity() {
+class pg7home : ScreenshotDetectionActivity()  {
 
     private lateinit var mentorAdapter: MentorAdapter
     private lateinit var mentorRecyclerView: RecyclerView
@@ -43,7 +39,7 @@ class pg7home : AppCompatActivity() {
         mentorList = ArrayList()
         mentorAdapter = MentorAdapter(this, mentorList)
         mentorRecyclerView.adapter = mentorAdapter
-        mentorRecyclerView.layoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL, false)
+        mentorRecyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
 
         currentUser = FirebaseAuth.getInstance().currentUser!!
         databaseReference = FirebaseDatabase.getInstance().getReference("mentors")
@@ -80,15 +76,11 @@ class pg7home : AppCompatActivity() {
         var add_btn = findViewById<ImageView>(R.id.add_img)
         var chat_btn = findViewById<ImageView>(R.id.chat_img)
         var profile_btn = findViewById<ImageView>(R.id.profile_img)
-
-
-
         /*var intent = getIntent()
         var mid = intent.getStringExtra("mid")
         var mName = intent.getStringExtra("mentorName")
         val msg = "Mentor ID: ${mid}, Mentor name: ${mName}"
         Toast.makeText(this, msg, Toast.LENGTH_LONG).show()*/
-
 
         logout.setOnClickListener {
             var mAuth= FirebaseAuth.getInstance()
