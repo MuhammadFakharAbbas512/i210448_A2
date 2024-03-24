@@ -86,15 +86,15 @@
             android:padding="5dp">
             <ImageView
                 android:id="@+id/file"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginStart="5dp"
                 android:src="@drawable/baseline_attach_file_24"></ImageView>
             <ImageView
                 android:id="@+id/img"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginStart="5dp"
                 android:layout_marginEnd="5dp"
@@ -110,22 +110,22 @@
 
             <ImageView
                 android:id="@+id/cam_btn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
                 android:layout_marginTop="5dp"
-                android:layout_marginStart="100dp"
+                android:layout_marginStart="60dp"
                 android:src="@drawable/outline_photo_camera_24"></ImageView>
             <ImageView
                 android:id="@+id/audio"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginStart="5dp"
                 android:src="@drawable/audio_voice_24"></ImageView>
             <ImageView
                 android:id="@+id/send"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginStart="5dp"
                 android:src="@drawable/outline_send_24"></ImageView>

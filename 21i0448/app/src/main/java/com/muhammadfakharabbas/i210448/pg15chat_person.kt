@@ -8,6 +8,7 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
@@ -36,29 +37,32 @@ class pg15chat_person : AppCompatActivity() {
     private lateinit var databaseRef: DatabaseReference
     private var firebaseUser: FirebaseUser? = null
     private lateinit var userId: String
-   /* private lateinit var dp: ImageView
-    private lateinit var file: ImageView
-    private lateinit var audio: ImageView*/
+    private var Datatype = 0
+    /* private lateinit var dp: ImageView
+     private lateinit var file: ImageView
+     private lateinit var audio: ImageView*/
 
     // Define variables for storage reference and current file URI
     private var storageRef: StorageReference? = null
     private var fileUri: Uri? = null
     private var audioUri: Uri? = null
     private var dpUri: Uri? = null
+    private var type: String = "msg"
+    private lateinit var recvId: String
 
     private val pickImage = registerForActivityResult(ActivityResultContracts.GetContent()) { uri ->
         if (uri != null) {
             dpUri = uri
-            findViewById<ImageView>(R.id.img).setImageURI(uri)
+            var img = findViewById<ImageView>(R.id.imgMsg).setImageURI(uri)
+            type="img"
         }
     }
     // Function to get URI for a file
     private val pickFile = registerForActivityResult(ActivityResultContracts.GetContent()) { uri ->
         if (uri != null) {
             fileUri = uri
-            // Do something with the file URL, such as storing it or displaying it
-            // For example, you can show the file URL in a TextView
             findViewById<ImageView>(R.id.file).setImageURI(fileUri)
+            type="file"
         }
     }
 
@@ -66,10 +70,9 @@ class pg15chat_person : AppCompatActivity() {
     private val pickAudio = registerForActivityResult(ActivityResultContracts.GetContent()) { uri ->
         if (uri != null) {
             audioUri = uri
-            // Do something with the audio URL, such as storing it or playing it
-            // For example, you can play the audio using MediaPlayer
             val mediaPlayer = MediaPlayer.create(this, uri)
-           // mediaPlayer.start()
+            // mediaPlayer.start()
+            type="audio"
         }
     }
 
@@ -89,6 +92,7 @@ class pg15chat_person : AppCompatActivity() {
 
         var intent = getIntent()
         var recvid = intent.getStringExtra("userId")
+        recvId = recvid.toString()
         var mentor = intent.getStringExtra("mid")
         if(mentor != null){
             recvid  = mentor
@@ -145,7 +149,10 @@ class pg15chat_person : AppCompatActivity() {
         }
 
         callBtn.setOnClickListener {
-            startActivity(Intent(this, pg20call::class.java))
+            var intent = Intent(this, pg20call::class.java)
+            intent.putExtra("name", userName)
+            intent.putExtra("id", recvid)
+            startActivity(intent)
         }
 
         camBtn.setOnClickListener {
@@ -193,6 +200,16 @@ class pg15chat_person : AppCompatActivity() {
             val message: String = etMessage.text.toString().trim()
             if (message.isEmpty()) {
                 Toast.makeText(this, "Message is empty", Toast.LENGTH_SHORT).show()
+
+                if (type == "audio"){
+                    sendAudioMessage(firebaseUser?.uid.toString(), recvId)
+                }
+                if (type == "img"){
+                    sendImageMessage(firebaseUser?.uid.toString(), recvId)
+                }
+                if (type == "file"){
+                    sendFileMessage(firebaseUser?.uid.toString(), recvId)
+                }
             } else {
                 sendMessage(currentUserID!!, recvid.toString(), message)
                 etMessage.setText("")
@@ -207,15 +224,22 @@ class pg15chat_person : AppCompatActivity() {
     // Functions to send and recv only text:
     private fun sendMessage(senderId: String, receiverId: String, message: String) {
         val reference = FirebaseDatabase.getInstance().getReference("Chat")
-
         val hashMap = HashMap<String, String>()
         hashMap["senderId"] = senderId
         hashMap["receiverId"] = receiverId
         hashMap["message"] = message
-
+        hashMap["timestamp"] = System.currentTimeMillis().toString()
+        if (type == "audio"){
+            sendAudioMessage(firebaseUser?.uid.toString(), recvId)
+        }
+        if (type == "img"){
+            sendImageMessage(firebaseUser?.uid.toString(), recvId)
+        }
+        if (type == "file"){
+            sendFileMessage(firebaseUser?.uid.toString(), recvId)
+        }
         reference.push().setValue(hashMap)
     }
-
     private fun readMessage(senderId: String, receiverId: String) {
         val databaseReference = FirebaseDatabase.getInstance().getReference("Chat")
 
@@ -228,6 +252,7 @@ class pg15chat_person : AppCompatActivity() {
                         (chat.senderId == receiverId && chat.receiverId == senderId)
                     ) {
                         chatList.add(chat)
+
                     }
                 }
                 chatAdapter = ChatAdapter(this@pg15chat_person, chatList)
@@ -242,39 +267,116 @@ class pg15chat_person : AppCompatActivity() {
     }
 
     // Function to send audio message
-    private fun sendAudioMessage(senderId: String, receiverId: String, audioUri: Uri) {
-        // Implement logic to upload audio to Firebase Storage
-        // Then, send a message containing the download URL
+    private fun sendAudioMessage(senderId: String, receiverId: String) {
+        // Get reference to Firebase Storage
+        val storageRef = FirebaseStorage.getInstance().reference.child("Chats/audios/${System.currentTimeMillis()}")
 
+        // Upload audio file to Firebase Storage
+        storageRef.putFile(audioUri!!)
+            .addOnSuccessListener { taskSnapshot ->
+                // Get the download URL of the uploaded audio
+                storageRef.downloadUrl.addOnSuccessListener { uri ->
+                    // Save the download URL in Realtime Database
+                    val databaseRef = FirebaseDatabase.getInstance().reference.child("Chat/audios")
+                    val messageMap = HashMap<String, Any>()
+                    val messageId = databaseRef.push().key // Generate a unique key
+                    messageMap["msgid"] = messageId.toString()
+                    messageMap["audioUrl"] = uri.toString()
+                    messageMap["messagetype"] = "audio"
+                    messageMap["timestamp"] = System.currentTimeMillis()
+                    // You can also add senderId and receiverId if needed
+                    databaseRef.push().setValue(messageMap)
+                    Toast.makeText(this, "sending audio message: ", Toast.LENGTH_SHORT).show()
+                }
+            }
+            .addOnFailureListener { exception ->
+                // Handle any errors
+                Toast.makeText(this, "Failed to send audio message: ${exception.message}", Toast.LENGTH_SHORT).show()
+            }
     }
 
     // Function to send image message
-    private fun sendImageMessage(senderId: String, receiverId: String, imageUri: Uri) {
-        // Implement logic to upload image to Firebase Storage
-        // Then, send a message containing the download URL
+    private fun sendImageMessage(senderId: String, receiverId: String) {
+        // Get reference to Firebase Storage
+        val storageRef = FirebaseStorage.getInstance().reference.child("Chats/images/${System.currentTimeMillis()}")
+
+        // Upload image file to Firebase Storage
+        storageRef.putFile(dpUri!!)
+            .addOnSuccessListener { taskSnapshot ->
+                // Get the download URL of the uploaded image
+                storageRef.downloadUrl.addOnSuccessListener { uri ->
+                    // Save the download URL in Realtime Database
+                    val databaseRef = FirebaseDatabase.getInstance().reference.child("Chat/images")
+                    val messageMap = HashMap<String, Any>()
+                    val messageId = databaseRef.push().key // Generate a unique key
+                    messageMap["msgid"] = messageId.toString()
+                    messageMap["imageUrl"] = uri.toString()
+                    messageMap["messagetype"] = "image"
+                    messageMap["timestamp"] = System.currentTimeMillis().toString()
+                    // You can also add senderId and receiverId if needed
+                    databaseRef.push().setValue(messageMap)
+                    val imageView = ImageView(this@pg15chat_person)
+                    imageView.setImageURI(dpUri)
+                     val layoutParams = LinearLayout.LayoutParams(200, 200)
+                     imageView.layoutParams = layoutParams
+                    // Add the ImageView to your layout
+                    // For example, if you have a LinearLayout with id 'container':
+                    var layoutUser = findViewById<LinearLayout>(R.id.layoutUser)
+                    layoutUser.addView(imageView)
+
+                    Toast.makeText(this, "sending image ", Toast.LENGTH_SHORT).show()
+                }
+            }
+            .addOnFailureListener { exception ->
+                // Handle any errors
+                Toast.makeText(this, "Failed to send image message ${exception.message}", Toast.LENGTH_SHORT).show()
+            }
     }
 
     // Function to send file message
-    private fun sendFileMessage(senderId: String, receiverId: String, fileUri: Uri) {
-        // Implement logic to upload file to Firebase Storage
-        // Then, send a message containing the download URL
+    private fun sendFileMessage(senderId: String, receiverId: String) {
+        // Get reference to Firebase Storage
+        val storageRef = FirebaseStorage.getInstance().reference.child("Chats/files/${System.currentTimeMillis()}")
+
+        // Upload file to Firebase Storage
+        storageRef.putFile(fileUri!!)
+            .addOnSuccessListener { taskSnapshot ->
+                // Get the download URL of the uploaded file
+                storageRef.downloadUrl.addOnSuccessListener { uri ->
+                    // Save the download URL in Realtime Database
+                    val databaseRef = FirebaseDatabase.getInstance().reference.child("Chat/files")
+                    val messageMap = HashMap<String, Any>()
+                    val messageId = databaseRef.push().key // Generate a unique key
+                    messageMap["msgid"] = messageId.toString()
+                    messageMap["fileUrl"] = uri.toString()
+                    messageMap["messagetype"] = "file"
+                    messageMap["timestamp"] = System.currentTimeMillis().toString()
+                    // You can also add senderId and receiverId if needed
+                    databaseRef.push().setValue(messageMap)
+                    Toast.makeText(this, "sending file ", Toast.LENGTH_SHORT).show()
+                }
+            }
+            .addOnFailureListener { exception ->
+                // Handle any errors
+                Toast.makeText(this, "Failed to send file message: ${exception.message}", Toast.LENGTH_SHORT).show()
+            }
     }
 
 
     // Modify onActivityResult to handle audio and file selection
-   /* private val startForResult = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-            if (result.resultCode == Activity.RESULT_OK) {
-                val intent = result.data
-                intent?.data?.let { uri ->
-                    if (requestCode == REQUEST_AUDIO_CAPTURE) {
-                        // Send audio message
-                        sendAudioMessage(currentUserID!!, recvid.toString(), uri)
-                    } else if (requestCode == REQUEST_FILE_PICK) {
-                        // Send file message
-                        sendFileMessage(currentUserID!!, recvid.toString(), uri)
-                    }
-                }
-            }
-        }*/
+    /* private val startForResult = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+             if (result.resultCode == Activity.RESULT_OK) {
+                 val intent = result.data
+                 intent?.data?.let { uri ->
+                     if (requestCode == REQUEST_AUDIO_CAPTURE) {
+                         // Send audio message
+                         sendAudioMessage(currentUserID!!, recvid.toString(), uri)
+                     } else if (requestCode == REQUEST_FILE_PICK) {
+                         // Send file message
+                         sendFileMessage(currentUserID!!, recvid.toString(), uri)
+                     }
+                 }
+             }
+         }*/
 }
 

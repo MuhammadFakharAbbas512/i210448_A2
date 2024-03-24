@@ -5,7 +5,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.ImageView
-import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -55,7 +54,7 @@ class pg14chat : AppCompatActivity() {
         var add_btn = findViewById<ImageView>(R.id.add_img)
         var chat_btn = findViewById<ImageView>(R.id.chat_img)
         var profile_btn = findViewById<ImageView>(R.id.profile_img)
-        imgProfile = findViewById(R.id.used)
+        imgProfile = findViewById(R.id.user2)
 
         back_btn.setOnClickListener{
             val intent = Intent(this, pg7home::class.java)
@@ -128,7 +127,7 @@ class pg14chat : AppCompatActivity() {
                     //  userList.add(user)
                     //   Toast.makeText(this@pg14chat, "User added", Toast.LENGTH_SHORT).show()}
 
-                    Toast.makeText(this@pg14chat,"users list added message", Toast.LENGTH_SHORT).show()
+                 //   Toast.makeText(this@pg14chat,"users list added message", Toast.LENGTH_SHORT).show()
                 }
                 if (currentUser!!.profileImage == ""){
                     Toast.makeText(this@pg14chat, "Set profile message", Toast.LENGTH_SHORT).show()
